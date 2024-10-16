@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -16,9 +17,9 @@ class Item extends Model
         'purchased',
     ];
 
-    public function user(): BelongsTo
+    public function kid(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Kid::class);
     }
 
     protected function casts(): array
@@ -26,5 +27,12 @@ class Item extends Model
         return [
             'purchased' => 'boolean',
         ];
+    }
+
+    protected function price(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $value / 100,
+        );
     }
 }
