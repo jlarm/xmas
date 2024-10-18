@@ -18,7 +18,7 @@ class ItemIndex extends Component
     #[On('update-items')]
     public function items()
     {
-        return $this->kid->items()->latest()->paginate(10);
+        return $this->kid->items()->latest()->paginate(8);
     }
 
     public function render()
