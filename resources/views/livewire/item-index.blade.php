@@ -8,10 +8,21 @@
                     <a @if ($item->link) href="{{ $item->link }}" @endif target="_blank" class="focus:outline-none">
                         <span class="absolute inset-0" aria-hidden="true"></span>
                         <p class="text-sm font-medium text-gray-900">{{ $item->name }}</p>
-                        <p class="truncate text-sm text-gray-500">
-                            {{ $item->size }} {{ $item->color }}
-                            {{ $item->price ? Number::currency($item->price / 100) : '' }}
-                        </p>
+                        <div class="mt-1">
+                            @if ($item->size)
+                                <flux:badge size="sm">{{ $item->size }}</flux:badge>
+                            @endif
+
+                            @if ($item->color)
+                                <flux:badge size="sm">{{ $item->color }}</flux:badge>
+                            @endif
+
+                            @if ($item->price)
+                                <flux:badge size="sm" color="lime">
+                                    {{ $item->price ? Number::currency($item->price / 100) : '' }}
+                                </flux:badge>
+                            @endif
+                        </div>
                         @if ($item->link)
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
