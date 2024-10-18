@@ -19,6 +19,14 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-white">
+            <div class="flex justify-center">
+                <flux:navbar>
+                    <flux:navbar.item wire:navigate href="{{ route('dashboard.kid', 1) }}">Kailee</flux:navbar.item>
+                    <flux:navbar.item wire:navigate href="{{ route('dashboard.kid', 2) }}">Becca</flux:navbar.item>
+                    <flux:navbar.item wire:navigate href="{{ route('dashboard.kid', 3) }}">Alissa</flux:navbar.item>
+                    <flux:navbar.item wire:navigate href="{{ route('dashboard.kid', 4) }}">Jacob</flux:navbar.item>
+                </flux:navbar>
+            </div>
             <main>
                 {{ $slot }}
             </main>
