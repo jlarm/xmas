@@ -9,9 +9,9 @@
         </flux:field>
 
         <flux:field>
-            <flux:label>Store</flux:label>
+            <flux:label>Store Name</flux:label>
 
-            <flux:input wire:model="store" type="text" required />
+            <flux:input wire:model="store" type="text" />
 
             <flux:error name="store" />
         </flux:field>
