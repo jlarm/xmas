@@ -7,11 +7,11 @@
 
     @foreach ($kids as $kid)
         <flux:tab.panel :name="$kid->name">
-            <div class="grid grid-cols-3 gap-10">
-                <div class="col-span-2">
+            <div class="grid gap-10 md:grid-cols-3">
+                <div class="md:col-span-2">
                     <livewire:item-index :$kid />
                 </div>
-                <div class="col-span-1">
+                <div class="md:col-span-1">
                     <livewire:create-item :$kid />
                 </div>
             </div>
