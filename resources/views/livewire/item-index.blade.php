@@ -8,7 +8,7 @@
                 <div class="min-w-0 flex-1">
                     <div class="focus:outline-none">
                         <span class="absolute inset-0" aria-hidden="true"></span>
-                        <p class="text-sm font-medium text-gray-900">{{ Str::limit($item->name, 45) }}</p>
+                        <p class="text-sm font-medium text-gray-900">{{ Str::limit($item->name, 40) }}</p>
                         <span class="text-xs text-gray-500">{{ $item->store }}</span>
                         <div class="mt-1">
                             @if ($item->size)
