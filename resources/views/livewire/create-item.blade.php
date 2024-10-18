@@ -9,6 +9,14 @@
         </flux:field>
 
         <flux:field>
+            <flux:label>Store</flux:label>
+
+            <flux:input wire:model="store" type="text" required />
+
+            <flux:error name="store" />
+        </flux:field>
+
+        <flux:field>
             <flux:label>Size</flux:label>
 
             <flux:input wire:model="size" type="text" />

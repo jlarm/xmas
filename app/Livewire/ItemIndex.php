@@ -8,11 +8,12 @@ use Flux\Flux;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
 
 class ItemIndex extends Component
 {
-    use WithPagination;
+    use WithoutUrlPagination, WithPagination;
 
     public Kid $kid;
 

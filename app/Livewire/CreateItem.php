@@ -14,6 +14,8 @@ class CreateItem extends Component
     #[Validate(['required', 'string'])]
     public string $name = '';
     #[Validate(['nullable', 'string'])]
+    public string $store = '';
+    #[Validate(['nullable', 'string'])]
     public $size;
     #[Validate(['nullable', 'string'])]
     public string $color = '';
@@ -41,6 +43,7 @@ class CreateItem extends Component
 
         $this->kid->items()->create([
             'name' => $this->pull('name'),
+            'store' => $this->pull('store'),
             'size' => $this->pull('size'),
             'color' => $this->pull('color'),
             'price' => $this->pull('price'),
