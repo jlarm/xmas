@@ -13,6 +13,7 @@
         <link href="https://fonts.bunny.net/css?family=inter:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
+        @livewireStyles
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @fluxStyles
     </head>
@@ -22,6 +23,7 @@
                 {{ $slot }}
             </main>
         </div>
+        @livewireScriptConfig
         @fluxScripts
         <flux:toast />
     </body>
