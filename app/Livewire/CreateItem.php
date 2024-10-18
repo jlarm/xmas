@@ -23,6 +23,7 @@ class CreateItem extends Component
     public $price;
     #[Validate(['boolean'])]
     public bool $purchased = false;
+    public $hidePurchased;
 
     public function addItem(): void
     {

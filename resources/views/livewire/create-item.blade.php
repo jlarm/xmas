@@ -1,8 +1,4 @@
-@php
-    use App\Enum\Size;
-@endphp
-
-<div class="rounded-lg bg-gray-50 p-3">
+<div>
     <form wire:submit.prevent="addItem" class="space-y-5">
         <flux:field>
             <flux:label badge="Required">Name</flux:label>
@@ -44,7 +40,9 @@
             <flux:error name="link" />
         </flux:field>
 
-        <flux:checkbox wire:model="purchased" label="Already Purchased" />
+        @if (! $hidePurchased)
+            <flux:checkbox wire:model="purchased" label="Already Purchased" />
+        @endif
 
         <flux:button type="submit" variant="primary">Add Item</flux:button>
     </form>
