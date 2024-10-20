@@ -15,6 +15,7 @@ class ItemIndex extends Component
     use WithPagination;
 
     public Kid $kid;
+    public $disableDelete;
 
     #[Computed]
     #[On('update-items')]

@@ -17,14 +17,14 @@
         @fluxStyles
     </head>
     <body class="font-sans text-gray-900 antialiased">
-        <div class="flex min-h-screen flex-col items-center p-6 sm:justify-center sm:pt-0">
+        <div class="mt-5sm:pt-0 flex min-h-screen flex-col items-center p-6">
             <div>
                 <a href="/" wire:navigate>
                     <x-application-logo class="h-20 w-20 fill-current text-gray-500" />
                 </a>
             </div>
 
-            <div class="mt-6 w-full overflow-hidden bg-white sm:max-w-md sm:rounded-lg">
+            <div class="mt-6 w-full max-w-4xl overflow-hidden bg-white sm:rounded-lg">
                 {{ $slot }}
             </div>
         </div>
