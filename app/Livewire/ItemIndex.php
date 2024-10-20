@@ -36,8 +36,11 @@ class ItemIndex extends Component
         );
     }
 
+    #[On('update-items')]
     public function render()
     {
-        return view('livewire.item-index');
+        return view('livewire.item-index', [
+            'items' => $this->kid->items()->latest()->paginate(8),
+        ]);
     }
 }

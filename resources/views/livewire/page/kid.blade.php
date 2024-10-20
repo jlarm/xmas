@@ -1,4 +1,5 @@
-<div class="mx-auto mt-20 max-w-4xl p-5">
+<div class="mx-auto max-w-4xl p-5">
+    <flux:heading size="xl" class="my-10">{{ $kid->name }}</flux:heading>
     <div>
         <flux:tab.group>
             <flux:tabs variant="segmented">

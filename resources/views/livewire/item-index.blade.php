@@ -1,6 +1,6 @@
 <div>
     <div class="gird-cols-1 grid gap-5 md:grid-cols-2">
-        @foreach ($this->items as $item)
+        @foreach ($items as $item)
             <div
                 wire:key="{{ $item->id }}"
                 class="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400"
