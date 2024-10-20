@@ -16,6 +16,7 @@ class Item extends Model
         'link',
         'price',
         'purchased',
+        'parent',
     ];
 
     public function kid(): BelongsTo

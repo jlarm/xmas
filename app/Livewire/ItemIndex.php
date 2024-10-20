@@ -31,8 +31,16 @@ class ItemIndex extends Component
     #[On('update-items')]
     public function render()
     {
+        $query = $this->kid->items();
+
+        if (auth()->check()) {
+            $items = $query->paginate(8);
+        } else {
+            $items = $query->where('parent', false)->paginate(8);
+        }
+
         return view('livewire.item-index', [
-            'items' => $this->kid->items()->latest()->paginate(8),
+            'items' => $items,
         ]);
     }
 }

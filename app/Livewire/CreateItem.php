@@ -42,6 +42,7 @@ class CreateItem extends Component
         $this->price = $this->price * 100;
 
         $this->kid->items()->create([
+            'parent' => (bool) auth()->user(),
             'name' => $this->pull('name'),
             'store' => $this->pull('store'),
             'size' => $this->pull('size'),
