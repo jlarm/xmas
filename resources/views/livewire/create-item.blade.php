@@ -47,7 +47,6 @@
 
             <flux:error name="link" />
         </flux:field>
-
         @if (! $hidePurchased)
             <flux:checkbox wire:model="purchased" label="Already Purchased" />
         @endif

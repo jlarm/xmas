@@ -5,7 +5,6 @@ namespace App\Livewire;
 use App\Models\Item;
 use App\Models\Kid;
 use Flux\Flux;
-use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -15,14 +14,6 @@ class ItemIndex extends Component
     use WithPagination;
 
     public Kid $kid;
-    public $disableDelete;
-
-    #[Computed]
-    #[On('update-items')]
-    public function items()
-    {
-        return $this->kid->items()->latest()->paginate(8);
-    }
 
     public function deleteItem($id): void
     {
