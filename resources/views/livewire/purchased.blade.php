@@ -40,14 +40,16 @@
                                         </flux:navmenu.item>
                                     @endif
 
-                                    <flux:navmenu.item
-                                        wire:click="deleteItem({{ $item->id }})"
-                                        wire:confirm="Are you sure you want to delete this item?"
-                                        variant="danger"
-                                        icon="trash"
-                                    >
-                                        Delete
-                                    </flux:navmenu.item>
+                                    @if (! $item->purchased)
+                                        <flux:navmenu.item
+                                            wire:click="deleteItem({{ $item->id }})"
+                                            wire:confirm="Are you sure you want to delete this item?"
+                                            variant="danger"
+                                            icon="trash"
+                                        >
+                                            Delete
+                                        </flux:navmenu.item>
+                                    @endif
                                 </flux:navmenu>
                             </flux:dropdown>
                         </div>
