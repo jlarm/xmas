@@ -1,12 +1,12 @@
 <div
     wire:key="{{ $item->id }}"
-    class="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm hover:border-gray-400"
+    class="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm hover:border-gray-400 dark:border-gray-600 dark:bg-gray-700"
 >
     <div class="min-w-0 flex-1">
         <div class="focus:outline-none">
             <span class="absolute inset-0" aria-hidden="true"></span>
-            <p class="text-sm font-medium text-gray-900">{{ Str::limit($item->name, 40) }}</p>
-            <span class="text-xs text-gray-500">{{ $item->store }}</span>
+            <p class="text-sm font-medium text-gray-900 dark:text-white">{{ Str::limit($item->name, 40) }}</p>
+            <span class="text-xs text-gray-500 dark:text-white">{{ $item->store }}</span>
             <div class="mt-1">
                 @if ($item->size)
                     <flux:badge size="sm">{{ $item->size }}</flux:badge>
