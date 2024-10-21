@@ -16,7 +16,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @fluxStyles
     </head>
-    <body class="font-sans text-gray-900 antialiased">
+    <body class="font-sans text-gray-900 antialiased dark:bg-gray-800">
         <div class="mt-5sm:pt-0 flex min-h-screen flex-col items-center p-6">
             <div>
                 <a href="/" wire:navigate>
@@ -24,7 +24,7 @@
                 </a>
             </div>
 
-            <div class="mt-6 w-full max-w-4xl overflow-hidden bg-white sm:rounded-lg">
+            <div class="mt-6 w-full max-w-4xl overflow-hidden bg-white sm:rounded-lg dark:bg-gray-800">
                 {{ $slot }}
             </div>
         </div>
