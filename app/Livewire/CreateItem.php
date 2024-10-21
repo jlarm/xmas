@@ -52,8 +52,6 @@ class CreateItem extends Component
             'purchased' => $this->pull('purchased'),
         ]);
 
-        $this->dispatch('update-items');
-
         Flux::toast(
             heading: 'Added',
             text: 'Item added successfully',
