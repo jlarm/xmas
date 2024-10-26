@@ -21,12 +21,12 @@ class Stats extends Component
 
     public function totalCost()
     {
-        return $this->kid->items()->select('price')->sum('price');
+        return $this->kid->items()->select('price')->sum('price') / 100;
     }
 
     public function totalSpent()
     {
-        return $this->kid->items()->where('purchased', true)->sum('price');
+        return $this->kid->items()->where('purchased', true)->sum('price') / 100;
     }
 
     public function render()
