@@ -34,7 +34,7 @@ class ItemIndex extends Component
         $query = $this->kid->items();
 
         if (auth()->check()) {
-            $items = $query->paginate(8);
+            $items = $query->where('purchased', false)->paginate(8);
         } else {
             $items = $query->where('parent', false)->paginate(8);
         }

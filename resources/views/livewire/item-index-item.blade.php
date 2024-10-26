@@ -1,5 +1,4 @@
 <div
-    wire:key="{{ $item->id }}"
     class="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm hover:border-gray-400 dark:border-gray-600 dark:bg-gray-700"
 >
     <div class="min-w-0 flex-1">
@@ -40,6 +39,13 @@
                         <flux:navmenu.item wire:click="edit" icon="pencil">Edit</flux:navmenu.item>
 
                         @if (auth()->user())
+                            <flux:navmenu.item
+                                wire:click="markPurchased"
+                                wire:confirm="Are you sure you want to mark this item as purchased?"
+                                icon="credit-card"
+                            >
+                                Mark Purchased
+                            </flux:navmenu.item>
                             <flux:navmenu.item
                                 wire:click="$parent.deleteItem({{ $item->id }})"
                                 wire:confirm="Are you sure you want to delete this item?"

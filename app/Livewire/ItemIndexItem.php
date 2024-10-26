@@ -41,6 +41,19 @@ class ItemIndexItem extends Component
         $this->modal('item-edit')->show();
     }
 
+    public function markPurchased()
+    {
+        $this->item->update(['purchased' => true]);
+
+        $this->dispatch('update-items');
+
+        Flux::toast(
+            heading: 'Purchases',
+            text: 'Item marked as purchased',
+            variant: 'success',
+        );
+    }
+
     public function update()
     {
         $this->validate();
