@@ -1,5 +1,6 @@
 <div class="mx-auto max-w-4xl p-5">
-    <flux:heading size="xl" class="my-10">{{ $kid->name }}</flux:heading>
+    <flux:heading size="xl">{{ $kid->name }}</flux:heading>
+    <livewire:stats :$kid />
     <div>
         <flux:tab.group>
             <flux:tabs variant="segmented">
