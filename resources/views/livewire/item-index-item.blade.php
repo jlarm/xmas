@@ -165,11 +165,7 @@
                                         ></path>
                                     </svg>
                                 </button>
-                                <img
-                                    src="{{ $item->getFirstMediaUrl('images', 'main') }}"
-                                    class="h-24 w-24 flex-none rounded-lg bg-gray-800 object-cover"
-                                    alt=""
-                                />
+                                <img src="{{ $item->getFirstMediaUrl('images', 'main') }}" alt="" />
                             @else
                                 <button
                                     wire:click.prevent="removeTempImage"
