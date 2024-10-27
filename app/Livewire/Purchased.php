@@ -17,7 +17,7 @@ class Purchased extends Component
     #[On('update-items')]
     public function items()
     {
-        return $this->kid->items()->where('purchased', true)->paginate(8);
+        return $this->kid->items()->where('purchased', true)->paginate(9);
     }
 
     public function render()

@@ -34,9 +34,9 @@ class ItemIndex extends Component
         $query = $this->kid->items();
 
         if (auth()->check()) {
-            $items = $query->where('purchased', false)->paginate(8);
+            $items = $query->where('purchased', false)->paginate(9);
         } else {
-            $items = $query->where('parent', false)->paginate(8);
+            $items = $query->where('parent', false)->paginate(9);
         }
 
         return view('livewire.item-index', [

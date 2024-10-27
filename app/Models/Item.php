@@ -5,9 +5,14 @@ namespace App\Models;
 use Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Item extends Model
+class Item extends Model implements HasMedia
 {
+    use InteractsWithMedia;
+
     protected $fillable = [
         'name',
         'store',
@@ -22,6 +27,14 @@ class Item extends Model
     public function kid(): BelongsTo
     {
         return $this->belongsTo(Kid::class);
+    }
+
+    public function registerMediaConversions(?Media $media = null): void
+    {
+        $this
+            ->addMediaConversion('main')
+            ->format('webp')
+            ->nonQueued();
     }
 
     protected function casts(): array

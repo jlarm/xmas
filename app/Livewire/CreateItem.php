@@ -6,9 +6,12 @@ use App\Models\Kid;
 use Flux;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class CreateItem extends Component
 {
+    use WithFileUploads;
+
     public Kid $kid;
 
     #[Validate(['required', 'string'])]
@@ -26,6 +29,8 @@ class CreateItem extends Component
     #[Validate(['boolean'])]
     public bool $purchased = false;
     public $hidePurchased;
+    #[Validate(['nullable', 'image', 'mimes:jpeg,jpg,png', 'max:1024'])]
+    public $image;
 
     public function addItem(): void
     {
@@ -41,7 +46,7 @@ class CreateItem extends Component
 
         $this->price = $this->price * 100;
 
-        $this->kid->items()->create([
+        $item = $this->kid->items()->create([
             'parent' => (bool) auth()->user(),
             'name' => $this->pull('name'),
             'store' => $this->pull('store'),
@@ -52,11 +57,21 @@ class CreateItem extends Component
             'purchased' => $this->pull('purchased'),
         ]);
 
+        if ($this->image) {
+            $item->addMedia($this->image)->toMediaCollection('images');
+            $this->image = null;
+        }
+
         Flux::toast(
             heading: 'Added',
             text: 'Item added successfully',
             variant: 'success',
         );
+    }
+
+    public function removeTempImage()
+    {
+        $this->image = null;
     }
 
     public function render()

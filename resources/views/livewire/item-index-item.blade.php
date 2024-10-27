@@ -1,27 +1,35 @@
-<div
-    class="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm hover:border-gray-400 dark:border-gray-600 dark:bg-gray-700"
->
-    <div class="min-w-0 flex-1">
-        <div class="focus:outline-none">
-            <span class="absolute inset-0" aria-hidden="true"></span>
-            <p class="text-sm font-medium text-gray-900 dark:text-white">{{ Str::limit($item->name, 40) }}</p>
-            <span class="text-xs text-gray-500 dark:text-white">{{ $item->store }}</span>
-            <div class="mt-1">
-                @if ($item->size)
-                    <flux:badge size="sm">{{ $item->size }}</flux:badge>
-                @endif
-
-                @if ($item->color)
-                    <flux:badge size="sm">{{ $item->color }}</flux:badge>
-                @endif
-
-                @if ($item->price)
-                    <flux:badge size="sm" color="lime">
-                        {{ $item->price ? Number::currency($item->price / 100) : '' }}
-                    </flux:badge>
-                @endif
-            </div>
-            <div class="absolute right-3 top-3">
+<div>
+    <div class="relative">
+        <div class="relative h-72 w-full overflow-hidden rounded-lg">
+            @if ($item->getFirstMedia('images'))
+                <img
+                    src="{{ $item->getFirstMediaUrl('images', 'main') }}"
+                    alt=""
+                    class="h-full w-full object-cover object-center"
+                />
+            @else
+                <img
+                    src="{{ asset('santa.jpg') }}"
+                    class="h-full w-full bg-gray-500 object-cover object-center"
+                    alt=""
+                />
+            @endif
+        </div>
+        <div class="relative mt-4">
+            <h3 class="text-sm font-medium text-gray-900 dark:text-white">{{ $item->name }}</h3>
+            <p class="mt-1 text-sm text-gray-500">{{ $item->store }}</p>
+            <p class="mt-1 text-sm text-gray-500">Size: {{ $item->size ? Str::title($item->size) : '-' }}</p>
+            <p class="mt-1 text-sm text-gray-500">Color: {{ $item->color ? Str::title($item->color) : '-' }}</p>
+        </div>
+        <div class="absolute inset-x-0 top-0 flex h-72 items-end justify-end overflow-hidden rounded-lg p-4">
+            <div
+                aria-hidden="true"
+                class="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black opacity-50"
+            ></div>
+            <div class="flex w-full items-center justify-between">
+                <p class="relative text-lg font-semibold text-white">
+                    {{ $item->price ? Number::currency($item->price / 100) : '' }}
+                </p>
                 <flux:dropdown>
                     <flux:button variant="subtle" icon="ellipsis-vertical"></flux:button>
 
