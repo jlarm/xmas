@@ -29,7 +29,7 @@ class CreateItem extends Component
     #[Validate(['boolean'])]
     public bool $purchased = false;
     public $hidePurchased;
-    #[Validate(['nullable', 'image', 'mimes:jpeg,jpg,png', 'max:1024'])]
+    #[Validate(['nullable', 'image', 'mimes:jpeg,jpg,png,webp', 'max:1024'])]
     public $image;
 
     public function addItem(): void

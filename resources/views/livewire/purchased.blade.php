@@ -1,6 +1,6 @@
 <div>
     <div class="gird-cols-1 grid gap-5 md:grid-cols-3">
-        @forelse ($this->items as $item)
+        @forelse ($items as $item)
             <div>
                 <div class="relative">
                     <div class="relative h-72 w-full overflow-hidden rounded-lg">
@@ -40,7 +40,7 @@
                                 {{ $item->price ? Number::currency($item->price / 100) : '' }}
                             </p>
                             <flux:dropdown>
-                                <flux:button variant="subtle" icon="ellipsis-vertical"></flux:button>
+                                <flux:button icon="ellipsis-vertical"></flux:button>
 
                                 <flux:navmenu>
                                     @if ($item->link)
@@ -57,72 +57,12 @@
                         </div>
                     </div>
                 </div>
-                <flux:modal name="item-edit" class="space-y-6" variant="flyout">
-                    <flux:heading>Edit Item</flux:heading>
-                    <div>
-                        <form wire:submit="update" class="space-y-5">
-                            <flux:field>
-                                <flux:label badge="Required">Name</flux:label>
-
-                                <flux:input wire:model="name" type="text" required />
-
-                                <flux:error name="name" />
-                            </flux:field>
-
-                            <flux:field>
-                                <flux:label>Store Name</flux:label>
-
-                                <flux:input wire:model="store" type="text" />
-
-                                <flux:error name="store" />
-                            </flux:field>
-
-                            <flux:field>
-                                <flux:label>Size</flux:label>
-
-                                <flux:input wire:model="size" type="text" />
-
-                                <flux:error name="size" />
-                            </flux:field>
-
-                            <flux:field>
-                                <flux:label>Color</flux:label>
-
-                                <flux:input wire:model="color" type="text" />
-
-                                <flux:error name="color" />
-                            </flux:field>
-
-                            <flux:field>
-                                <flux:label>Price</flux:label>
-
-                                <flux:input wire:model="price" type="text" placeholder="99.99" />
-
-                                <flux:error name="price" />
-                            </flux:field>
-
-                            <flux:field>
-                                <flux:label>Link</flux:label>
-
-                                <flux:input wire:model="link" type="url" placeholder="https://google.com" />
-
-                                <flux:error name="link" />
-                            </flux:field>
-
-                            @if (auth()->user())
-                                <flux:checkbox wire:model="purchased" label="Already Purchased" />
-                            @endif
-
-                            <flux:button type="submit" variant="primary">Update Item</flux:button>
-                        </form>
-                    </div>
-                </flux:modal>
             </div>
         @empty
             <flux:header>Nothing purchased yet.</flux:header>
         @endforelse
     </div>
     <div class="mt-5">
-        {{ $this->items->links() }}
+        {{ $items->links() }}
     </div>
 </div>

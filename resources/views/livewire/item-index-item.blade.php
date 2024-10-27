@@ -31,7 +31,7 @@
                     {{ $item->price ? Number::currency($item->price / 100) : '' }}
                 </p>
                 <flux:dropdown>
-                    <flux:button variant="subtle" icon="ellipsis-vertical"></flux:button>
+                    <flux:button icon="ellipsis-vertical"></flux:button>
 
                     <flux:navmenu>
                         @if ($item->link)
@@ -71,7 +71,7 @@
     <flux:modal name="item-edit" class="space-y-6" variant="flyout">
         <flux:heading>Edit Item</flux:heading>
         <div>
-            <form wire:submit="update" class="space-y-5">
+            <form wire:submit="editItem" class="space-y-5">
                 <flux:field>
                     <flux:label badge="Required">Name</flux:label>
 
@@ -119,6 +119,154 @@
 
                     <flux:error name="link" />
                 </flux:field>
+
+                <div class="flex items-center gap-3">
+                    @if ($image)
+                        <div class="relative h-24 w-24">
+                            @if ($item->getFirstMedia('images'))
+                                <button
+                                    wire:click.prevent="deleteImg"
+                                    class="absolute right-0.5 top-0.5 rounded-md bg-slate-200 bg-opacity-75 p-1 text-slate-600 hover:text-red-500 dark:bg-slate-800 dark:text-slate-400"
+                                >
+                                    <svg
+                                        wire:loading.remove
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        class="size-4"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M6 18L18 6M6 6l12 12"
+                                        ></path>
+                                    </svg>
+                                    <svg
+                                        wire:loading
+                                        class="h-5 w-5 animate-spin text-white"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <circle
+                                            class="opacity-25"
+                                            cx="12"
+                                            cy="12"
+                                            r="10"
+                                            stroke="currentColor"
+                                            stroke-width="4"
+                                        ></circle>
+                                        <path
+                                            class="opacity-75"
+                                            fill="currentColor"
+                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                        ></path>
+                                    </svg>
+                                </button>
+                                <img
+                                    src="{{ $item->getFirstMediaUrl('images', 'main') }}"
+                                    class="h-24 w-24 flex-none rounded-lg bg-gray-800 object-cover"
+                                    alt=""
+                                />
+                            @else
+                                <button
+                                    wire:click.prevent="removeTempImage"
+                                    class="absolute right-0.5 top-0.5 rounded-md bg-slate-200 bg-opacity-75 p-1 text-slate-600 hover:text-red-500 dark:bg-slate-800 dark:text-slate-400"
+                                >
+                                    <svg
+                                        wire:loading.remove
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        class="size-4"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M6 18L18 6M6 6l12 12"
+                                        ></path>
+                                    </svg>
+                                    <svg
+                                        wire:loading
+                                        class="h-5 w-5 animate-spin text-white"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <circle
+                                            class="opacity-25"
+                                            cx="12"
+                                            cy="12"
+                                            r="10"
+                                            stroke="currentColor"
+                                            stroke-width="4"
+                                        ></circle>
+                                        <path
+                                            class="opacity-75"
+                                            fill="currentColor"
+                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                        ></path>
+                                    </svg>
+                                </button>
+                                <img
+                                    src="{{ $image->temporaryUrl() }}"
+                                    alt=""
+                                    class="h-24 w-24 flex-none rounded-lg bg-gray-800 object-cover"
+                                />
+                            @endif
+                        </div>
+                    @else
+                        <label
+                            for="image"
+                            class="flex h-24 w-24 items-center justify-center rounded-lg bg-gray-600 object-cover hover:cursor-pointer"
+                        >
+                            <svg
+                                wire:loading
+                                class="h-5 w-5 animate-spin text-white"
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                            >
+                                <circle
+                                    class="opacity-25"
+                                    cx="12"
+                                    cy="12"
+                                    r="10"
+                                    stroke="currentColor"
+                                    stroke-width="4"
+                                ></circle>
+                                <path
+                                    class="opacity-75"
+                                    fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                ></path>
+                            </svg>
+                            <svg
+                                wire:loading.remove
+                                class="size-10 text-gray-400"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+                                <path
+                                    d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"
+                                />
+                                <circle cx="12" cy="13" r="3" />
+                            </svg>
+                            <input type="file" wire:model="image" id="image" class="sr-only" accept="image/jpg,png" />
+                        </label>
+                    @endif
+                </div>
 
                 @if (auth()->user())
                     <flux:checkbox wire:model="purchased" label="Already Purchased" />

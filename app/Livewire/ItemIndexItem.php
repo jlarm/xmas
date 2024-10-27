@@ -6,9 +6,12 @@ use App\Models\Item;
 use Flux\Flux;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class ItemIndexItem extends Component
 {
+    use WithFileUploads;
+
     public Item $item;
     #[Validate(['required', 'string'])]
     public string $name;
@@ -24,6 +27,7 @@ class ItemIndexItem extends Component
     public $price;
     #[Validate(['boolean'])]
     public bool $purchased = false;
+    public $image;
 
     public function mount()
     {
@@ -34,6 +38,7 @@ class ItemIndexItem extends Component
         $this->link = $this->item->link ?? '';
         $this->price = $this->item->price ? number_format($this->item->price / 100, 2, '.', '') : null;
         $this->purchased = $this->item->purchased ?? false;
+        $this->image = $this->item->getFirstMediaUrl('images', 'main') ?? '';
     }
 
     public function edit()
@@ -54,7 +59,7 @@ class ItemIndexItem extends Component
         );
     }
 
-    public function update()
+    public function editItem()
     {
         $this->validate();
 
@@ -78,13 +83,34 @@ class ItemIndexItem extends Component
             'purchased' => $this->purchased,
         ]);
 
+        if ($this->image) {
+            $this->item->addMedia($this->image)->toMediaCollection('images');
+            $this->image = null;
+        }
+
         $this->modal('item-edit')->close();
+
+        $this->dispatch('update-items');
 
         Flux::toast(
             heading: 'Updated',
             text: 'Item updated successfully',
             variant: 'success',
         );
+    }
+
+    public function removeTempImage(): void
+    {
+        $this->image = null;
+    }
+
+    public function deleteImg()
+    {
+        $this->item->clearMediaCollection('images');
+
+        $this->image = null;
+
+        $this->dispatch('update-items');
     }
 
     public function render()

@@ -23,7 +23,7 @@ new #[Layout('layouts.guest')] class extends Component {
     }
 }; ?>
 
-<div>
+<flux:card class="mx-auto space-y-6 lg:max-w-96">
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -91,4 +91,4 @@ new #[Layout('layouts.guest')] class extends Component {
             </x-primary-button>
         </div>
     </form>
-</div>
+</flux:card>
