@@ -145,13 +145,7 @@
                             />
                             <circle cx="12" cy="13" r="3" />
                         </svg>
-                        <input
-                            type="file"
-                            wire:model="image"
-                            id="image"
-                            class="sr-only"
-                            accept="image/jpg,image/png,image/webp"
-                        />
+                        <input type="file" wire:model="image" id="image" class="sr-only" accept="image/*" />
                     </label>
                 @endif
             </div>
