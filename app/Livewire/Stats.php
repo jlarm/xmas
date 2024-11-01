@@ -4,8 +4,10 @@ namespace App\Livewire;
 
 use App\Models\Kid;
 use Illuminate\View\View;
+use Livewire\Attributes\Lazy;
 use Livewire\Component;
 
+#[Lazy]
 class Stats extends Component
 {
     public Kid $kid;
@@ -30,7 +32,7 @@ class Stats extends Component
         return $this->getItems()->where('purchased', true)->sum('price') / 100;
     }
 
-    public function placeholder()
+    public function placeholder(): string
     {
         return <<<'HTML'
             <div class="w-full h-32 my-8 bg-gray-200 rounded-2xl animate-pulse"></div>
