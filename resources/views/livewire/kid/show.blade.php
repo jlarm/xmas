@@ -1,6 +1,6 @@
 <div class="mx-auto max-w-4xl p-5">
     <flux:heading size="xl">{{ $kid->name }}</flux:heading>
-    <livewire:stats :$kid />
+    <livewire:stats lazy :$kid />
     <div>
         <flux:tab.group>
             <flux:tabs variant="segmented">

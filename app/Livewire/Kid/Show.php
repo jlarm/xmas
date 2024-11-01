@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Livewire\Page;
+namespace App\Livewire\Kid;
 
+use App\Models\Kid;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 
-class Kid extends Component
+class Show extends Component
 {
-    public \App\Models\Kid $kid;
+    public Kid $kid;
 
     #[Layout('layouts.app')]
     public function render()
     {
-        return view('livewire.page.kid');
+        return view('livewire.kid.show');
     }
 }

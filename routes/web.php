@@ -1,8 +1,10 @@
 <?php
 
 use App\Livewire\ItemForm;
-use App\Livewire\Page\Kid;
+use App\Livewire\Kid\Show;
 use Illuminate\Support\Facades\Route;
+
+Route::redirect('/', '/login');
 
 Route::get('dashboard', function () {
     return to_route('dashboard.kid', ['kid' => 1]);
@@ -16,7 +18,7 @@ Route::view('profile', 'profile')
 
 Route::get('kid/{kid}', ItemForm::class)->name('form');
 
-Route::get('dashboard/kids/{kid}', Kid::class)
+Route::get('dashboard/kids/{kid}', Show::class)
     ->middleware(['auth', 'verified'])
     ->name('dashboard.kid');
 
