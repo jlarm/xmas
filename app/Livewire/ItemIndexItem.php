@@ -38,7 +38,7 @@ class ItemIndexItem extends Component
         $this->size = $this->item->size ?? '';
         $this->color = $this->item->color ?? '';
         $this->link = $this->item->link ?? '';
-        $this->price = $this->item->price ? number_format($this->item->price / 100, 2, '.', '') : null;
+        $this->price = $this->item->price;
         $this->purchased = $this->item->purchased ?? false;
         $this->grandma = $this->item->grandma;
         $this->image = $this->item->getFirstMediaUrl('images', 'main') ?? '';

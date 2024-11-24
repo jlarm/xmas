@@ -36,9 +36,7 @@
                             class="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black opacity-50"
                         ></div>
                         <div class="flex w-full items-center justify-between">
-                            <p class="relative text-lg font-semibold text-white">
-                                {{ $item->price ? Number::currency($item->price / 100) : '' }}
-                            </p>
+                            <p class="relative text-lg font-semibold text-white">${{ $item->price }}</p>
                             <flux:dropdown>
                                 <flux:button icon="ellipsis-vertical"></flux:button>
 

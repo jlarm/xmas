@@ -58,7 +58,8 @@ class Item extends Model implements HasMedia
     protected function price(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => $value / 100,
+            get: fn ($value) => number_format($value / 100, 2, '.', ''),
+            set: fn ($value) => (float) $value * 100,
         );
     }
 }
