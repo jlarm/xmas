@@ -59,7 +59,7 @@ class Item extends Model implements HasMedia
     {
         return Attribute::make(
             get: fn ($value) => number_format($value / 100, 2, '.', ''),
-            set: fn ($value) => (float) $value * 100,
+            set: fn ($value) => (int) ((float) str_replace(',', '', $value) * 100),
         );
     }
 }

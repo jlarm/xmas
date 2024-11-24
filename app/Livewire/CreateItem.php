@@ -41,13 +41,6 @@ class CreateItem extends Component
         // Remove any $ from the price input
         $this->price = str_replace('$', '', $this->price);
 
-        // Ensure the price is a valid number
-        if (! is_numeric($this->price)) {
-            $this->price = null;
-        }
-
-        $this->price = $this->price * 100;
-
         $item = $this->kid->items()->create([
             'parent' => (bool) auth()->user(),
             'name' => $this->pull('name'),
