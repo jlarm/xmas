@@ -28,9 +28,11 @@
         </flux:columns>
 
         <flux:rows>
-            @foreach ($this->items as $item)
+            @forelse ($this->items as $item)
                 <livewire:grandma.index-item :$item :key="$item->id" />
-            @endforeach
+            @empty
+                <flux:cell>No items added yet</flux:cell>
+            @endforelse
         </flux:rows>
     </flux:table>
 </div>
