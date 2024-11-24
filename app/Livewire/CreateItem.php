@@ -28,6 +28,8 @@ class CreateItem extends Component
     public $price;
     #[Validate(['boolean'])]
     public bool $purchased = false;
+    #[Validate(['boolean'])]
+    public bool $grandma = false;
     public $hidePurchased;
     #[Validate(['nullable', 'image', 'mimes:jpeg,jpg,png,webp', 'max:1024'])]
     public $image;
@@ -55,6 +57,7 @@ class CreateItem extends Component
             'price' => $this->pull('price'),
             'link' => $this->pull('link'),
             'purchased' => $this->pull('purchased'),
+            'grandma' => $this->pull('grandma'),
         ]);
 
         if ($this->image) {
@@ -63,8 +66,8 @@ class CreateItem extends Component
         }
 
         Flux::toast(
-            heading: 'Added',
             text: 'Item added successfully',
+            heading: 'Added',
             variant: 'success',
         );
     }
