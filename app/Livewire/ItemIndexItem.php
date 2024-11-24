@@ -27,6 +27,8 @@ class ItemIndexItem extends Component
     public $price;
     #[Validate(['boolean'])]
     public bool $purchased = false;
+    #[Validate(['boolean'])]
+    public bool $grandma = false;
     public $image;
 
     public function mount()
@@ -38,6 +40,7 @@ class ItemIndexItem extends Component
         $this->link = $this->item->link ?? '';
         $this->price = $this->item->price ? number_format($this->item->price / 100, 2, '.', '') : null;
         $this->purchased = $this->item->purchased ?? false;
+        $this->grandma = $this->item->grandma;
         $this->image = $this->item->getFirstMediaUrl('images', 'main') ?? '';
     }
 
@@ -53,8 +56,8 @@ class ItemIndexItem extends Component
         $this->dispatch('update-items');
 
         Flux::toast(
-            heading: 'Purchases',
             text: 'Item marked as purchased',
+            heading: 'Purchases',
             variant: 'success',
         );
     }
@@ -81,6 +84,7 @@ class ItemIndexItem extends Component
             'link' => $this->link,
             'price' => $this->price,
             'purchased' => $this->purchased,
+            'grandma' => $this->grandma,
         ]);
 
         if ($this->image) {
@@ -93,8 +97,8 @@ class ItemIndexItem extends Component
         $this->dispatch('update-items');
 
         Flux::toast(
-            heading: 'Updated',
             text: 'Item updated successfully',
+            heading: 'Updated',
             variant: 'success',
         );
     }
