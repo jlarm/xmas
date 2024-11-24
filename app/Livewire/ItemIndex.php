@@ -24,13 +24,13 @@ class ItemIndex extends Component
         $this->dispatch('update-items');
 
         Flux::toast(
-            heading: 'Deleted',
             text: 'Item deleted successfully',
+            heading: 'Deleted',
             variant: 'success',
         );
     }
 
-    public function placeholder()
+    public function placeholder(): string
     {
         return <<<'HTML'
         <div>
@@ -49,7 +49,7 @@ class ItemIndex extends Component
     #[On('update-items')]
     public function render()
     {
-        $query = $this->kid->items();
+        $query = $this->kid->items()->where('grandma', false);
 
         if (auth()->check()) {
             $items = $query->where('purchased', false)->paginate(9);

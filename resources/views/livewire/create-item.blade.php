@@ -157,6 +157,8 @@
             <flux:checkbox wire:model="purchased" label="Already Purchased" />
         @endif
 
+        <flux:checkbox wire:model="grandma" label="For Grandmas List" />
+
         <flux:button type="submit" variant="primary">Add Item</flux:button>
     </form>
 </div>

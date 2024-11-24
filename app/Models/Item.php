@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use Attribute;
+use App\Enum\ItemStatus;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\MediaLibrary\HasMedia;
@@ -22,6 +23,7 @@ class Item extends Model implements HasMedia
         'price',
         'purchased',
         'parent',
+        'grandma',
     ];
 
     public function kid(): BelongsTo
@@ -35,6 +37,15 @@ class Item extends Model implements HasMedia
             ->addMediaConversion('main')
             ->format('webp')
             ->nonQueued();
+    }
+
+    public function purchaseStatus(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $this->purchased ? ItemStatus::Purchased : (
+                $this->created_at->gt(now()->subWeek()) ? ItemStatus::New : null
+            ),
+        );
     }
 
     protected function casts(): array
