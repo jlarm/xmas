@@ -1,6 +1,9 @@
 <flux:row>
-    <flux:cell class="flex items-center gap-3">
+    <flux:cell class="">
         {{ Str::title($item->name) }}
+        <span class="block text-xs">
+            {{ $item->size ? Str::title($item->size) . ' -' : '' }} {{ Str::title($item->color) ?? '' }}
+        </span>
     </flux:cell>
 
     <flux:cell class="whitespace-nowrap">{{ Str::title($item->store) }}</flux:cell>
