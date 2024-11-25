@@ -19,17 +19,17 @@ class Stats extends Component
 
     public function totalPurchased()
     {
-        return $this->getItems()->where('purchased', true)->count();
+        return $this->getItems()->where('grandma', false)->where('purchased', true)->count();
     }
 
     public function totalCost(): float|int
     {
-        return $this->getItems()->select('price')->sum('price') / 100;
+        return $this->getItems()->where('grandma', false)->select('price')->sum('price');
     }
 
     public function totalSpent(): float|int
     {
-        return $this->getItems()->where('purchased', true)->sum('price') / 100;
+        return $this->getItems()->where('grandma', false)->where('purchased', true)->sum('price') / 100;
     }
 
     public function placeholder(): string

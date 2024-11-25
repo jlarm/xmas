@@ -4,6 +4,12 @@
             <div>
                 <div class="relative">
                     <div class="relative h-72 w-full overflow-hidden rounded-lg">
+                        @if ($item->grandma)
+                            <flux:badge class="absolute right-4 top-4" variant="solid" color="green">
+                                Purchased By Grandma
+                            </flux:badge>
+                        @endif
+
                         @if ($item->getFirstMedia('images'))
                             <img
                                 src="{{ $item->getFirstMediaUrl('images', 'main') }}"

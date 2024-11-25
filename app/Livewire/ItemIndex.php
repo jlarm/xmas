@@ -49,7 +49,7 @@ class ItemIndex extends Component
     #[On('update-items')]
     public function render()
     {
-        $query = $this->kid->items()->where('grandma', false);
+        $query = $this->kid->items();
 
         if (auth()->check()) {
             $items = $query->where('purchased', false)->paginate(9);

@@ -2,17 +2,19 @@
 
 namespace App\Livewire;
 
+use App\Models\Kid;
 use Livewire\Attributes\Lazy;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithoutUrlPagination;
 use Livewire\WithPagination;
 
 #[Lazy]
 class Purchased extends Component
 {
-    use WithPagination;
+    use WithoutUrlPagination, WithPagination;
 
-    public \App\Models\Kid $kid;
+    public Kid $kid;
 
     public function placeholder()
     {

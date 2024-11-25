@@ -21,6 +21,10 @@
             <p class="mt-1 text-sm text-gray-500">Size: {{ $item->size ? Str::title($item->size) : '-' }}</p>
             <p class="mt-1 text-sm text-gray-500">Color: {{ $item->color ? Str::title($item->color) : '-' }}</p>
         </div>
+        @if ($item->grandma)
+            <flux:badge class="absolute right-4 top-4" variant="solid" color="green">On Grandmas List</flux:badge>
+        @endif
+
         <div class="absolute inset-x-0 top-0 flex h-72 items-end justify-end overflow-hidden rounded-lg p-4">
             <div
                 aria-hidden="true"
