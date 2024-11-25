@@ -2,7 +2,11 @@
     <flux:cell class="">
         {{ Str::title($item->name) }}
         <span class="block text-xs">
-            {{ $item->size ? 'Size: ' . Str::title($item->size) . ' -' : '' }}
+            {{ $item->size ? 'Size: ' . Str::title($item->size) : '' }}
+            @if ($item->size && $item->color)
+                -
+            @endif
+
             {{ $item->color ? 'Color: ' . Str::title($item->color) : '' }}
         </span>
     </flux:cell>
