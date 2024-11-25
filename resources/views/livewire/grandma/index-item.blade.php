@@ -2,7 +2,8 @@
     <flux:cell class="">
         {{ Str::title($item->name) }}
         <span class="block text-xs">
-            {{ $item->size ? Str::title($item->size) . ' -' : '' }} {{ Str::title($item->color) ?? '' }}
+            {{ $item->size ? 'Size: ' . Str::title($item->size) . ' -' : '' }}
+            {{ $item->color ? 'Color: ' . Str::title($item->color) : '' }}
         </span>
     </flux:cell>
 
