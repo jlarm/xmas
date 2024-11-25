@@ -10,19 +10,11 @@
                             </flux:badge>
                         @endif
 
-                        @if ($item->getFirstMedia('images'))
-                            <img
-                                src="{{ $item->getFirstMediaUrl('images', 'main') }}"
-                                alt=""
-                                class="h-full w-full object-cover object-center"
-                            />
-                        @else
-                            <img
-                                src="{{ asset('santa.jpg') }}"
-                                class="h-full w-full bg-gray-500 object-cover object-center"
-                                alt=""
-                            />
-                        @endif
+                        <img
+                            src="{{ asset('santa.jpg') }}"
+                            class="h-full w-full bg-gray-500 object-cover object-center"
+                            alt=""
+                        />
                     </div>
                     <div class="relative mt-4">
                         <h3 class="text-sm font-medium text-gray-900 dark:text-white">{{ $item->name }}</h3>
